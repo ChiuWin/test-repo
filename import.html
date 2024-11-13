@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件上传表单</title>
+    <style>
+        /* 设置页面字体和背景 */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 上传表单容器样式 */
+        .upload-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* 文件输入样式 */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* 自定义的文件选择按钮 */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 30px;
+            cursor: pointer;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #357ABD;
+        }
+
+        /* 提交按钮样式 */
+        button {
+            background-color: #9013fe;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #7e10da;
+        }
+
+        /* 自定义的文件名显示样式 */
+        .file-selected {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="upload-container">
+        <h1>上传文件</h1>
+        <!-- 文件上传表单 -->
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <!-- 自定义的文件选择按钮 -->
+            <label for="file-upload" class="custom-file-upload">
+                选择文件
+            </label>
+            <!-- 文件选择输入 -->
+            <input id="file-upload" type="file" name="file" required onchange="displayFileName()">
+            <!-- 提交按钮 -->
+            <button type="submit">上传文件</button>
+            <!-- 显示选择的文件名 -->
+            <div id="file-name" class="file-selected"></div>
+        </form>
+    </div>
+
+    <script>
+        // 显示选中的文件名
+        function displayFileName() {
+            const fileInput = document.getElementById('file-upload');
+            const fileName = document.getElementById('file-name');
+            fileName.textContent = fileInput.files.length > 0 ? `已选择文件: ${fileInput.files[0].name}` : '';
+        }
+    </script>
+
+</body>
+</html>
